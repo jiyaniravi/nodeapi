@@ -18,7 +18,7 @@ exports.getPosts =  (request, response)=>{
 
 exports.createPost = (request, response) => {
     const post = new Post(request.body);
-    post.save((errorObj, result)=>{
+    /* post.save((errorObj, result)=>{
         if(errorObj){
             return response.status(400).json({
                 error:errorObj
@@ -27,5 +27,9 @@ exports.createPost = (request, response) => {
         response.status(200).json({
             post:result
         });
-    });
+    }); */
+
+    post.save().then(result => {
+        response.status(200).json({post: result});
+    })
 };

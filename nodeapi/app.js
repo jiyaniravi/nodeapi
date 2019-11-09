@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
 const postRoutes = require('./routes/post');
 
 const app = express();
@@ -15,6 +16,7 @@ const filter = (request, response, nextFilter) => {
 app.use(morgan("dev"));
 app.use(filter);
 app.use(bodyParser.json());
+app.use(expressValidator());
 app.use('/', postRoutes);
 app.listen(port, ()=>{ console.log(`Listening on port : ${port}`); });
 
