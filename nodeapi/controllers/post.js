@@ -5,13 +5,19 @@
 const Post = require('../models/post');
 
 exports.getPosts =  (request, response)=>{
-    response.json({
+    /* response.json({
         responseCode : 200,
         responseMessage : "This is success message !",
         responseObject : [
             {key1:'value1'},
             {key2:'value2'}
         ]
+    }); */
+
+    const posts  = Post.find().select('title').then((posts)=> {
+        response.status(200).json({post : posts});
+    }).catch((error) => {
+        console.log(error);
     });
 };
 
